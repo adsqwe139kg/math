@@ -1,28 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="main-content">
+<div class="container">
     <div style="text-align: center; margin: 40px 0;">
         <h1 style="font-size: 2.5rem; color: #fff; margin-bottom: 15px; font-weight: 700;">Інтерактивний математичний довідник</h1>
-        <p style="color: #94a3b8; font-size: 1.1rem;">Теорія, формули, візуалізація та калькулятори для швидкого обчислення.</p>
+        <p style="color: #94a3b8; font-size: 1.1rem;">Теорія, формули та приклади розв'язання.</p>
     </div>
 
-    <div class="card-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 20px;">
+    <div class="card-grid">
         {% for topic_id, topic_data in topics.items() %}
-            <div class="card" style="background-color: #1e293b; border-radius: 12px; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #334155;">
+            <div class="card">
+                <span class="favorite-star" onclick="toggleFavorite(this)">★</span>
                 <div>
-                    <h3 style="font-size: 1.3rem; color: #fff; margin-bottom: 12px; font-weight: 600;">{{ topic_data.title }}</h3>
-                    <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;">
-                        {% if topic_data.desc %}
-                            {{ topic_data.desc }}
-                        {% else %}
-                            Натисніть, щоб відкрити формули, детальні правила та приклади розв'язання.
-                        {% endif %}
+                    <h3 style="font-size: 1.3rem; color: #fff; margin-bottom: 12px;">{{ topic_data.title }}</h3>
+                    <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.5;">
+                        {{ topic_data.desc or 'Натисніть для вивчення теми.' }}
                     </p>
                 </div>
-                <a href="/topic/{{ topic_id }}" class="btn" style="display: block; background-color: #38bdf8; color: #0f172a; text-align: center; padding: 12px; border-radius: 8px; font-weight: 600; text-decoration: none;">Перейти</a>
+                <a href="/topic/{{ topic_id }}" class="btn">Перейти</a>
             </div>
         {% endfor %}
     </div>
 </div>
+
+<script>
+    function toggleFavorite(element) {
+        element.classList.toggle('active');
+    }
+</script>
 {% endblock %}
