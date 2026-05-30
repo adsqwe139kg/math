@@ -1,4 +1,4 @@
-/* Глибокий космічний градієнт на фоні */
+/* Глибокий космічний градієнт */
 body {
     margin: 0;
     padding: 0;
@@ -6,30 +6,55 @@ body {
     background-attachment: fixed;
     color: #f8fafc;
     font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
 }
 
-/* Ефект матового скла (Glassmorphism) */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Картки у стилі матового скла */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
 .card {
-    background: rgba(30, 41, 59, 0.4) !important;
+    background: rgba(30, 41, 59, 0.4);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, border-color 0.3s ease;
     position: relative;
 }
 
-/* Світіння при наведенні */
 .card:hover {
     transform: translateY(-5px);
-    border-color: rgba(56, 189, 248, 0.5) !important;
+    border-color: rgba(56, 189, 248, 0.5);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .btn {
-    background-color: #38bdf8 !important;
-    border: none;
-    cursor: pointer;
+    display: block;
+    background-color: #38bdf8;
+    color: #0f172a;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 20px;
 }
 
+/* Зірочка обраного */
 .favorite-star {
     position: absolute;
     top: 15px;
@@ -41,5 +66,5 @@ body {
 }
 
 .favorite-star.active {
-    color: #fbbf24; /* Золота зірка */
+    color: #fbbf24;
 }
