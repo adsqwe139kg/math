@@ -1,43 +1,19 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
-<section class="hero">
-    <h1>Інтерактивний математичний довідник</h1>
-    <p>Теорія, формули, візуалізація та калькулятори для швидкого обчислення.</p>
+<div class="container">
+    <h2 style="margin-bottom: 20px; font-weight: 700; letter-spacing: -0.5px;">📐 Математичні теми</h2>
     
-    <div class="search-box">
-        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-        <input type="text" id="search-input" placeholder="Шукати тему чи формулу (наприклад: квадрат, логарифм, D = b²)...">
+    <div class="topics-grid">
+        {% for topic_id, topic_data in topics.items() %}
+            <a href="/topic/{{ topic_id }}" class="topic-card">
+                <div>
+                    <h3>{{ topic_data.title }}</h3>
+                    <p>Натисніть, щоб відкрити формули, детальні правила та приклади розв'язання.</p>
+                </div>
+                <span class="btn-back" style="margin-top: 15px; text-align: right; display: block;">Читати далі ➔</span>
+            </a>
+        {% endfor %}
     </div>
-</section>
-
-<div class="grid-container" id="topics-grid">
-    <div class="card" data-title="теорема піфагора прямокутний трикутник c² = a² + b²">
-        <div class="card-icon"><i class="fa-solid fa-vector-square" style="color: #56b6c2;"></i></div>
-        <h3>Теорема Піфагора</h3>
-        <p>Фундаментальне співвідношення в геометрії між сторонами прямокутного трикутника.</p>
-        <a href="/topic/pifagor" class="btn">Перейти</a>
-    </div>
-
-    {% for id, info in topics.items() %}
-    <div class="card" data-title="{{ info.title.lower() }} {{ info.desc.lower() }} {% for f in info.formulas %}{{ f.formula.lower() }} {{ f.name.lower() }} {% endfor %}">
-        <div class="card-icon">
-            {% if id in ['square','rectangle','triangle','circle','rhombus','trapezoid','parallelogram'] %}
-                <i class="fa-solid fa-shapes" style="color: #61afef;"></i>
-            {% elif id in ['cube','sphere','cone','cylinder'] %}
-                <i class="fa-solid fa-cube" style="color: #98c379;"></i>
-            {% else %}
-                <i class="fa-solid fa-square-root-variable" style="color: #c678dd;"></i>
-            {% endif %}
-        </div>
-        <h3>{{ info.title }}</h3>
-        <p>{{ info.desc }}</p>
-        <a href="/topic/{{ id }}" class="btn">Перейти</a>
-    </div>
-    {% endfor %}
-</div>
-
-<div id="no-results" class="no-results hidden">
-    <i class="fa-solid fa-face-frown"></i> Нічого не знайдено за вашим запитом.
 </div>
 {% endblock %}
