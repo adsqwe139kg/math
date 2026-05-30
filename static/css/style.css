@@ -1,70 +1,17 @@
-/* Глибокий космічний градієнт */
-body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
-    background-attachment: fixed;
-    color: #f8fafc;
-    font-family: 'Segoe UI', sans-serif;
-    min-height: 100vh;
+.btn-main {
+    transition: background 0.3s ease;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+.btn-main:hover {
+    background: #0ea5e9 !important; /* Трохи темніший синій при наведенні */
+    color: #fff !important;
 }
 
-/* Картки у стилі матового скла */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
+.topic-card {
+    transition: transform 0.2s;
 }
 
-.card {
-    background: rgba(30, 41, 59, 0.4);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-    position: relative;
-}
-
-.card:hover {
+.topic-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(56, 189, 248, 0.5);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.btn {
-    display: block;
-    background-color: #38bdf8;
-    color: #0f172a;
-    text-align: center;
-    padding: 12px;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    margin-top: 20px;
-}
-
-/* Зірочка обраного */
-.favorite-star {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: #475569;
-    transition: color 0.2s;
-}
-
-.favorite-star.active {
-    color: #fbbf24;
+    border-color: #38bdf8 !important;
 }
