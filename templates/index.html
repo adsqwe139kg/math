@@ -1,18 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    <h2 style="margin-bottom: 20px; font-weight: 700; letter-spacing: -0.5px;">📐 Математичні теми</h2>
+<div class="container" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
     
-    <div class="topics-grid">
+    <div style="text-align: center; margin: 40px 0;">
+        <h1 style="font-size: 2.5rem; color: #fff; margin-bottom: 15px; font-weight: 700;">Інтерактивний математичний довідник</h1>
+        <p style="color: #94a3b8; font-size: 1.1rem;">Теорія, формули, візуалізація та калькулятори для швидкого обчислення.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-top: 30px;">
         {% for topic_id, topic_data in topics.items() %}
-            <a href="/topic/{{ topic_id }}" class="topic-card">
+            <div style="background-color: #1e293b; border-radius: 12px; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #334155;">
                 <div>
-                    <h3>{{ topic_data.title }}</h3>
-                    <p>Натисніть, щоб відкрити формули, детальні правила та приклади розв'язання.</p>
+                    <h3 style="font-size: 1.3rem; color: #fff; margin-bottom: 12px;">{{ topic_data.title }}</h3>
+                    <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;">
+                        {% if topic_data.desc %}
+                            {{ topic_data.desc }}
+                        {% else %}
+                            Натисніть, щоб відкрити формули, детальні правила та приклади розв'язання.
+                        {% endif %}
+                    </p>
                 </div>
-                <span class="btn-back" style="margin-top: 15px; text-align: right; display: block;">Читати далі ➔</span>
-            </a>
+                <a href="/topic/{{ topic_id }}" style="display: block; background-color: #38bdf8; color: #0f172a; text-align: center; padding: 12px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: background-color 0.2s;">Перейти</a>
+            </div>
         {% endfor %}
     </div>
 </div>
