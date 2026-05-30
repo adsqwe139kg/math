@@ -1,22 +1,43 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <div style="text-align: center; margin: 40px 0;">
-        <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Математичний довідник</h1>
+<section class="hero">
+    <h1>Інтерактивний математичний довідник</h1>
+    <p>Теорія, формули, візуалізація та калькулятори для швидкого обчислення.</p>
+    
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="search-input" placeholder="Шукати тему чи формулу (наприклад: квадрат, логарифм, D = b²)...">
+    </div>
+</section>
+
+<div class="grid-container" id="topics-grid">
+    <div class="card" data-title="теорема піфагора прямокутний трикутник c² = a² + b²">
+        <div class="card-icon"><i class="fa-solid fa-vector-square" style="color: #56b6c2;"></i></div>
+        <h3>Теорема Піфагора</h3>
+        <p>Фундаментальне співвідношення в геометрії між сторонами прямокутного трикутника.</p>
+        <a href="/topic/pifagor" class="btn">Перейти</a>
     </div>
 
-    <div class="topics-grid">
-        {% for topic_id, topic_data in topics.items() %}
-            <div class="topic-card">
-                <span class="favorite-star" onclick="this.classList.toggle('active')">★</span>
-                <div>
-                    <h3>{{ topic_data.title }}</h3>
-                    <p style="color: #94a3b8;">{{ topic_data.desc or 'Детальна інформація про тему.' }}</p>
-                </div>
-                <a href="/topic/{{ topic_id }}" class="btn-main">Перейти</a>
-            </div>
-        {% endfor %}
+    {% for id, info in topics.items() %}
+    <div class="card" data-title="{{ info.title.lower() }} {{ info.desc.lower() }} {% for f in info.formulas %}{{ f.formula.lower() }} {{ f.name.lower() }} {% endfor %}">
+        <div class="card-icon">
+            {% if id in ['square','rectangle','triangle','circle','rhombus','trapezoid','parallelogram'] %}
+                <i class="fa-solid fa-shapes" style="color: #61afef;"></i>
+            {% elif id in ['cube','sphere','cone','cylinder'] %}
+                <i class="fa-solid fa-cube" style="color: #98c379;"></i>
+            {% else %}
+                <i class="fa-solid fa-square-root-variable" style="color: #c678dd;"></i>
+            {% endif %}
+        </div>
+        <h3>{{ info.title }}</h3>
+        <p>{{ info.desc }}</p>
+        <a href="/topic/{{ id }}" class="btn">Перейти</a>
     </div>
+    {% endfor %}
+</div>
+
+<div id="no-results" class="no-results hidden">
+    <i class="fa-solid fa-face-frown"></i> Нічого не знайдено за вашим запитом.
 </div>
 {% endblock %}
