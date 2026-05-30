@@ -1,34 +1,72 @@
 {% extends 'base.html' %}
+
+{% block title %}Теорема Піфагора — Довідник{% endblock %}
+
 {% block content %}
-<div class="topic-container" data-topic-id="pifagor">
-    <div class="topic-header">
-        <h2>📐 Теорема Піфагора</h2>
-        <a href="/" class="btn-back">⬅ Назад</a>
+<div class="topic-layout" id="topic-page" data-topic-id="pifagor">
+    <div class="topic-main">
+        <div class="card-topic-header">
+            <h1>Теорема Піфагора</h1>
+            <p class="lead">Одна з найважливіших теорем геометрії, яка пов'язує сторони прямокутного трикутника.</p>
+        </div>
+
+        <section class="section">
+            <h2><i class="fa-solid fa-graduation-cap"></i> Теорія</h2>
+            <p>У прямокутному трикутнику квадрат довжини гіпотенузи дорівнює сумі квадратів довжин катетів. Гіпотенуза — це сторона, що лежить навпроти прямого кута (90°).</p>
+        </section>
+
+        <section class="section">
+            <h2><i class="fa-solid fa-square-root-variable"></i> Формула</h2>
+            <div class="example-box" style="font-size: 1.3rem; text-align: center;">
+                <strong>c² = a² + b²</strong>
+            </div>
+            <p>Звідси можна виразити будь-яку сторону:</p>
+            <ul>
+                <li>Гіпотенуза: <code>c = √(a² + b²)</code></li>
+                <li>Катет a: <code>a = √(c² - b²)</code></li>
+                <li>Катет b: <code>b = √(c² - a²)</code></li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2><i class="fa-solid fa-lightbulb"></i> Приклад</h2>
+            <p>Нехай катети прямокутного трикутника рівні $a = 3\text{ см}$ і $b = 4\text{ см}$. Знайдемо гіпотенузу $c$:</p>
+            <div class="example-box">
+                $c^2 = 3^2 + 4^2 = 9 + 16 = 25$ <br>
+                $c = \sqrt{25} = 5\text{ см}$.
+            </div>
+        </section>
     </div>
 
-    <div class="topic-grid">
-        <div class="theory-section">
-            <div class="box">
-                <h3>📚 Теорія</h3>
-                <p>У прямокутному трикутнику квадрат довжини гіпотенузи дорівнює сумі квадратів довжин катетів.</p>
-                <p>Формула: <code>c² = a² + b²</code></p>
+    <div class="topic-sidebar">
+        <div class="sidebar-sticky">
+            <div class="visual-box">
+                <h3>Візуалізація</h3>
+                <svg viewBox="0 0 200 200" class="vector-svg">
+                    <polygon points="40,40 40,160 160,160" fill="none" stroke="#56b6c2" stroke-width="4"/>
+                    <rect x="40" y="150" width="10" height="10" fill="none" stroke="#56b6c2" stroke-width="2"/>
+                </g>
+                </svg>
             </div>
-        </div>
-        <div class="interactive-section">
-            <div class="box calc-box">
-                <h3>🧮 Калькулятор гіпотенузи</h3>
-                <div class="form-group">
-                    <label>Катет a</label>
-                    <input type="number" id="katetA" class="calc-input" placeholder="Значення a...">
-                </div>
-                <div class="form-group">
-                    <label>Катет b</label>
-                    <input type="number" id="katetB" class="calc-input" placeholder="Значення b...">
-                </div>
-                <div class="result-display">
-                    <h4>Гіпотенуза c:</h4>
-                    <div id="pifagor-result" class="result-text">Очікування даних...</div>
-                </div>
+
+            <div class="calc-box">
+                <h3>Калькулятор сторін</h3>
+                <form id="calc-form">
+                    <div class="form-group">
+                        <label for="sideA">Катет a (залиште порожнім, якщо шукаєте його)</label>
+                        <input type="number" step="any" id="sideA" placeholder="Значення a...">
+                    </div>
+                    <div class="form-group">
+                        <label for="sideB">Катет b (залиште порожнім, якщо шукаєте його)</label>
+                        <input type="number" step="any" id="sideB" placeholder="Значення b...">
+                    </div>
+                    <div class="form-group">
+                        <label for="hypC">Гіпотенуза c (залиште порожнім, якщо шукаєте її)</label>
+                        <input type="number" step="any" id="hypC" placeholder="Значення c...">
+                    </div>
+                    <button type="button" id="btn-compute" class="btn btn-block">Обчислити невідому</button>
+                </form>
+                <div id="calc-result" class="calc-result hidden"></div>
             </div>
         </div>
     </div>
