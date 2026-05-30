@@ -1,17 +1,49 @@
-.btn-main {
-    transition: background 0.3s ease;
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0f172a;
+    color: #f8fafc;
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
 }
 
-.btn-main:hover {
-    background: #0ea5e9 !important; /* Трохи темніший синій при наведенні */
-    color: #fff !important;
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
 }
 
 .topic-card {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     transition: transform 0.2s;
 }
 
 .topic-card:hover {
     transform: translateY(-5px);
-    border-color: #38bdf8 !important;
+    border-color: #38bdf8;
+}
+
+.btn-main {
+    display: block;
+    background: #38bdf8;
+    color: #0f172a;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
 }
