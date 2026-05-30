@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="topic-container" data-topic-id="{{ id }}">
+    <div class="topic-header">
+        <h2>{{ data.title }}</h2>
+        <a href="/" class="btn-back">⬅ Назад</a>
+    </div>
+
+    <div class="topic-grid">
+        <div class="theory-section">
+            <div class="box">
+                <h3>📚 Теорія та визначення</h3>
+                <p>{{ data.desc }}</p>
+                <p><em>{{ data.theory }}</em></p>
+            </div>
+            <div class="box formula-box">
+                <h3>📝 Основні формули</h3>
+                <ul>
+                    {% for f in data.formulas %}
+                    <li><strong>{{ f.name }}:</strong> <code>{{ f.formula }}</code></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="box example-box">
+                <h3>💡 Приклад розв'язання</h3>
+                <p>{{ data.example }}</p>
+            </div>
+        </div>
+
+        <div class="interactive-section">
+            <div class="box visual-box">
+                <h3>🎨 Візуалізація</h3>
+                <div class="svg-wrapper">
+                    <svg width="200" height="200" viewBox="0 0 200 200">
+                        {{ data.svg|safe }}
+                    </svg>
+                </div>
+            </div>
+            <div class="box calc-box">
+                <h3>🧮 Інтерактивний калькулятор</h3>
+                <form id="calc-form">
+                    {% for input in data.inputs %}
+                    <div class="form-group">
+                        <label for="{{ input.id }}">{{ input.label }}</label>
+                        <input type="number" id="{{ input.id }}" class="calc-input" step="any" placeholder="Введіть значення...">
+                    </div>
+                    {% endfor %}
+                </form>
+                <div class="result-display">
+                    <h4>Результат обчислень:</h4>
+                    <div id="calc-result" class="result-text">Введіть дані у поля вище...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

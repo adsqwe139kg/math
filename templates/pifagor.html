@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="topic-container" data-topic-id="pifagor">
+    <div class="topic-header">
+        <h2>📐 Теорема Піфагора</h2>
+        <a href="/" class="btn-back">⬅ Назад</a>
+    </div>
+
+    <div class="topic-grid">
+        <div class="theory-section">
+            <div class="box">
+                <h3>📚 Теорія</h3>
+                <p>У прямокутному трикутнику квадрат довжини гіпотенузи дорівнює сумі квадратів довжин катетів.</p>
+                <p>Формула: <code>c² = a² + b²</code></p>
+            </div>
+        </div>
+        <div class="interactive-section">
+            <div class="box calc-box">
+                <h3>🧮 Калькулятор гіпотенузи</h3>
+                <div class="form-group">
+                    <label>Катет a</label>
+                    <input type="number" id="katetA" class="calc-input" placeholder="Значення a...">
+                </div>
+                <div class="form-group">
+                    <label>Катет b</label>
+                    <input type="number" id="katetB" class="calc-input" placeholder="Значення b...">
+                </div>
+                <div class="result-display">
+                    <h4>Гіпотенуза c:</h4>
+                    <div id="pifagor-result" class="result-text">Очікування даних...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

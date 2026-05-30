@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Усі формули — Математичний довідник{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="fa-solid fa-table"></i> Зведена таблиця усіх формул</h1>
+    <p>Швидкий пошук та огляд математичних залежностей.</p>
+    <div class="search-box" style="margin-top: 20px;">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="formula-search" placeholder="Фільтрувати формули за назвою або математичним записом...">
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="formula-table" id="formula-table">
+        <thead>
+            <tr>
+                <th>Категорія/Тема</th>
+                <th>Назва формули</th>
+                <th>Математичний вираз</th>
+                <th>Дія</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-search="теорема піфагора гіпотенуза c^2 = a^2 + b^2">
+                <td class="theme-td">Теорема Піфагора</td>
+                <td>Гіпотенуза квадрата сторін</td>
+                <td class="math-expr">c² = a² + b²</td>
+                <td><a href="/topic/pifagor" class="table-link">Перейти</a></td>
+            </tr>
+            {% for id, info in topics.items() %}
+                {% for f in info.formulas %}
+                <tr data-search="{{ info.title.lower() }} {{ f.name.lower() }} {{ f.formula.lower() }}">
+                    <td class="theme-td">{{ info.title }}</td>
+                    <td>{{ f.name }}</td>
+                    <td class="math-expr">{{ f.formula }}</td>
+                    <td><a href="/topic/{{ id }}" class="table-link">Перейти</a></td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
