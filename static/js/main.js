@@ -9,6 +9,25 @@ document.addEventListener("DOMContentLoaded", function () {
             mobileMenu.classList.toggle("open");
         });
     }
+
+    // Пошук по картках тем (Головна сторінка)
+    const searchInput = document.getElementById("search-input");
+    if (searchInput) {
+        searchInput.addEventListener("input", function (e) {
+            const query = e.target.value.toLowerCase().trim();
+            const cards = document.querySelectorAll("#topics-grid .card");
+            let anyVisible = false;
+
+            cards.forEach(card => {
+                const searchData = card.getAttribute("data-title");
+                if (searchData.includes(query)) {
+                    card.classList.remove("hidden");
+                    anyVisible = true;
+                } else {
+                    card.classList.add("hidden");
+                }
+            });
+
             const noResults = document.getElementById("no-results");
             if (anyVisible) {
                 noResults.classList.add("hidden");
@@ -36,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
+    // Обчислювальна логіка інтерактивних калькуляторів
     const topicPage = document.getElementById("topic-page");
     const btnCompute = document.getElementById("btn-compute");
     const calcResult = document.getElementById("calc-result");
