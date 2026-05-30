@@ -8,20 +8,25 @@
 </head>
 <body>
 
-    <header>
-        <div class="container header-content">
-            <h1><a href="/">MathDocs</a></h1>
-            <nav>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">MathHandbook</a>
+            <div class="nav-links">
                 <a href="/">Головна</a>
-                <a href="/formulas">Формули</a>
-            </nav>
+                <a href="/formulas">Шпаргалка</a>
+                <a href="/topic/pifagor">Теорема Піфагора</a>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <main>
+    <main class="main-content">
         {% block content %}
         {% endblock %}
     </main>
+
+    <footer class="footer">
+        <p>© 2026 Математичний Довідник. Всі права захищені.</p>
+    </footer>
 
 </body>
 </html>
