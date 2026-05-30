@@ -1,31 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
+<div class="container" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+    
     <div style="text-align: center; margin: 40px 0;">
-        <h1 style="font-size: 2.5rem; color: #fff; margin-bottom: 15px; font-weight: 700;">Інтерактивний математичний довідник</h1>
-        <p style="color: #94a3b8; font-size: 1.1rem;">Теорія, формули та приклади розв'язання.</p>
+        <h1 style="color: #fff;">Інтерактивний математичний довідник</h1>
+        <p style="color: #94a3b8;">Теорія, формули, візуалізація та калькулятори.</p>
     </div>
 
-    <div class="card-grid">
+    <div class="topics-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px;">
         {% for topic_id, topic_data in topics.items() %}
-            <div class="card">
-                <span class="favorite-star" onclick="toggleFavorite(this)">★</span>
-                <div>
-                    <h3 style="font-size: 1.3rem; color: #fff; margin-bottom: 12px;">{{ topic_data.title }}</h3>
-                    <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.5;">
-                        {{ topic_data.desc or 'Натисніть для вивчення теми.' }}
-                    </p>
-                </div>
-                <a href="/topic/{{ topic_id }}" class="btn">Перейти</a>
+            <div class="topic-card" style="background: #1e293b; padding: 20px; border-radius: 12px; border: 1px solid #334155;">
+                <h3 style="color: #fff; margin-bottom: 10px;">{{ topic_data.title }}</h3>
+                <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">
+                    {{ topic_data.desc or 'Натисніть для вивчення теми.' }}
+                </p>
+                <a href="/topic/{{ topic_id }}" class="btn-main" style="display: block; background: #38bdf8; color: #000; text-align: center; padding: 10px; border-radius: 6px; text-decoration: none; font-weight: bold;">Перейти</a>
             </div>
         {% endfor %}
     </div>
 </div>
-
-<script>
-    function toggleFavorite(element) {
-        element.classList.toggle('active');
-    }
-</script>
 {% endblock %}
