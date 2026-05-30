@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>Результати пошуку для: "{{ query }}"</h2>
+    
+    {% if results %}
+        <div class="topics-list">
+            {% for topic_id, topic_data in results.items() %}
+                <div class="topic-card">
+                    <h3><a href="/topic/{{ topic_id }}">{{ topic_data.title }}</a></h3>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Нічого не знайдено. Спробуй ввести іншу формулу або термін.</p>
+    {% endif %}
+    
+    <a href="/" class="btn-back">На головну</a>
+</div>
+{% endblock %}
