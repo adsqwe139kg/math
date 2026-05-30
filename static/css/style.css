@@ -1,55 +1,428 @@
-/* Глибокий космічний градієнт */
-body {
+/* Палітра кольорів One Dark Pro */
+:root {
+    --bg-main: #21252b;
+    --bg-card: #282c34;
+    --bg-input: #abb2bf10;
+    --text-main: #abb2bf;
+    --text-bright: #ffffff;
+    --accent: #61afef;
+    --accent-hover: #4fa1e3;
+    --border-color: #3e4451;
+    --success: #98c379;
+    --warning: #e5c07b;
+    --danger: #e06c75;
+}
+
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
-    background-attachment: fixed;
-    color: #f8fafc;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
 }
 
-.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-/* Сітка карток */
-.topics-grid {
+/* Навігація */
+.header {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-bright);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo i {
+    color: var(--accent);
+}
+
+.navbar a {
+    color: var(--text-main);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: var(--accent);
+}
+
+/* Бургер-меню для мобільних */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-bright);
+    transition: 0.3s;
+}
+
+/* Головний блок пошуку */
+.hero {
+    text-align: center;
+    padding: 60px 0 40px;
+}
+
+.hero h1 {
+    color: var(--text-bright);
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.search-box {
+    position: relative;
+    max-width: 600px;
+    margin: 30px auto 0;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px 20px 15px 50px;
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 30px;
+    color: var(--text-bright);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-box input:focus {
+    border-color: var(--accent);
+}
+
+.search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-main);
+}
+
+/* Сетка карток */
+.grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
-    margin-top: 30px;
+    padding: 20px 0 60px;
 }
 
-/* Картки у стилі матового скла */
-.topic-card {
-    background: rgba(30, 41, 59, 0.5);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 25px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.3s ease;
-    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.topic-card:hover { transform: translateY(-5px); border-color: #38bdf8; }
+.card:hover {
+    transform: translateY(-50px);
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
 
-.btn-main {
-    display: block;
-    background: #38bdf8;
-    color: #0f172a;
-    text-align: center;
-    padding: 12px;
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: var(--text-bright);
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--accent);
+    color: var(--bg-card);
+    font-weight: bold;
+    padding: 10px 20px;
     border-radius: 8px;
     text-decoration: none;
-    font-weight: bold;
-    margin-top: 20px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-/* Зірочка обраного */
-.favorite-star {
-    position: absolute; top: 15px; right: 15px;
-    cursor: pointer; font-size: 1.5rem; color: #475569;
+.btn:hover {
+    background-color: var(--accent-hover);
 }
-.favorite-star.active { color: #fbbf24; }
+
+.btn-block {
+    width: 100%;
+}
+
+/* Двоколонковий макет для тем */
+.topic-layout {
+    display: flex;
+    gap: 40px;
+    padding: 40px 0;
+}
+
+.topic-main {
+    flex: 2;
+}
+
+.topic-sidebar {
+    flex: 1;
+    min-width: 320px;
+}
+
+.sidebar-sticky {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.card-topic-header {
+    margin-bottom: 30px;
+}
+
+.card-topic-header h1 {
+    color: var(--text-bright);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.lead {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.section {
+    margin-bottom: 35px;
+}
+
+.section h2 {
+    color: var(--text-bright);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 5px;
+}
+
+.formula-list {
+    list-style: none;
+}
+
+.formula-list li {
+    background-color: var(--bg-card);
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--accent);
+}
+
+.code-expr {
+    font-family: monospace;
+    color: var(--warning);
+    font-size: 1.1rem;
+    background-color: rgba(0,0,0,0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.example-box {
+    background-color: rgba(152, 195, 121, 0.1);
+    border-left: 4px solid var(--success);
+    padding: 20px;
+    border-radius: 8px;
+    line-height: 1.6;
+}
+
+/* Блоки візуалізації та калькулятора */
+.visual-box, .calc-box {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.visual-box h3, .calc-box h3 {
+    color: var(--text-bright);
+    margin-bottom: 15px;
+}
+
+.vector-svg {
+    width: 100%;
+    max-height: 200px;
+    background-color: rgba(0,0,0,0.15);
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-bright);
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: var(--accent);
+}
+
+.calc-result {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: rgba(97, 175, 239, 0.1);
+    border: 1px dashed var(--accent);
+    border-radius: 6px;
+}
+
+/* Таблиця формул */
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 30px;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.formula-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.formula-table th, .formula-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.formula-table th {
+    background-color: rgba(0,0,0,0.15);
+    color: var(--text-bright);
+}
+
+.theme-td {
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.math-expr {
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: var(--warning);
+}
+
+.table-link {
+    color: var(--text-bright);
+    text-decoration: underline;
+}
+
+.table-link:hover {
+    color: var(--accent);
+}
+
+.hidden { display: none !important; }
+
+.no-results {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.2rem;
+    color: var(--danger);
+}
+
+/* Футер */
+.footer {
+    background-color: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+    font-size: 0.9rem;
+}
+
+/* Адаптивність (Медіа-запити) */
+@media (max-width: 900px) {
+    .topic-layout {
+        flex-direction: column;
+    }
+    .topic-sidebar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--bg-card);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        border-bottom: 1px solid var(--border-color);
+        padding: 10px 0;
+    }
+    .navbar.active {
+        display: flex;
+    }
+    .navbar a {
+        margin: 10px 20px;
+    }
+    .menu-toggle {
+        display: flex;
+    }
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+}
